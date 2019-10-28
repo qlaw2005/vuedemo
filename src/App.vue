@@ -1,7 +1,11 @@
 <template>
   <div id="container" class="container">
     <div id="header" class="header">
-      <div id="logo" name="logo">LOGO</div>
+      <div id="logo">
+        <brandimage :config="config"></brandimage>
+        <!---  add a brand component here, it is expected to show the client logo -->
+      </div>
+      <div id="status">STATUS</div>
     </div>
     <div id="sidebar" class="sidebar">
       <Sidebar></Sidebar>
@@ -9,9 +13,19 @@
     <div id="main" class="main">
       <div v-if="position === 'top'" id="notification">{{welcomeMessage}}</div>
       <div id="panes">
-        <div id="news" name="news">news</div>
-        <div id="social" name="social">Social</div>
-        <div id="corporate" name="corporate">Corporate</div>
+        <div id="news" name="news">
+          <yesno></yesno>
+          <!-- add a yesno component, display a yes/no image from yesno.wtf, also adds a button, when clicked, display another image --->
+        </div>
+        <div id="social" name="social">
+          Social
+          <soical></soical>
+        </div>
+
+        <div id="corporate" name="corporate">
+          Corporate
+          <corporate></corporate>
+        </div>
       </div>
       <div v-if="position === 'bottom'" id="notification">{{welcomeMessage}}</div>
     </div>
@@ -20,12 +34,21 @@
 </template>
 <script>
 import Sidebar from "./components/SideBar";
+// import Brand from ...
 import config from "./config.json";
+import brandimage from "./components/brandimage";
+import yesno from "./components/yesno";
+import soical from "./components/Social";
+import corporate from "./components/Corporate";
 
 export default {
   name: "App",
   components: {
-    Sidebar
+    Sidebar, // Brand
+    brandimage,
+    yesno,
+    soical,
+    corporate
   },
   data() {
     return {
@@ -54,6 +77,14 @@ body {
 
 #header {
   grid-area: header;
+  display: flex;
+}
+#logo {
+  background-color: lightyellow;
+}
+#status {
+  flex: 1;
+  background-color: lightpink;
 }
 #sidebar {
   grid-area: sidebar;
