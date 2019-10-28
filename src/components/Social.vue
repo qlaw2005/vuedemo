@@ -1,17 +1,17 @@
 <template>
   <div id="main">
-    <input v-model="message" placeholder="edit me" />
+    <input :value="message" placeholder="edit me" @input="sendmessage" />
     <p>Message is: {{ message }}</p>
   </div>
 </template>
 
 <script>
+import inputMixin from "../mixins/inputMixin.js";
 export default {
+  mixins: [inputMixin],
   props: {},
   data() {
-    return {
-      message: ""
-    };
+    return {};
   },
   computed: {},
   methods: {},

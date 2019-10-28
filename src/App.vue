@@ -19,13 +19,16 @@
         </div>
         <div id="social" name="social">
           Social
-          <soical></soical>
+          <social @sendmessage="setMessage" :message="fathermessage" />
         </div>
-
-        <div id="corporate" name="corporate">
+        <div id="corporate">
           Corporate
-          <corporate></corporate>
+          <corporate @sendmessage="setMessage" :message="fathermessage"></corporate>
         </div>
+        <!-- <div id="corporate" name="corporate">
+          Corporate
+          <corporate @sendcormessage="setMessage" :msg="fathermessage" :message="fathermessage"></corporate>
+        </div>-->
       </div>
       <div v-if="position === 'bottom'" id="notification">{{welcomeMessage}}</div>
     </div>
@@ -38,7 +41,7 @@ import Sidebar from "./components/SideBar";
 import config from "./config.json";
 import brandimage from "./components/brandimage";
 import yesno from "./components/yesno";
-import soical from "./components/Social";
+import social from "./components/Social";
 import corporate from "./components/Corporate";
 
 export default {
@@ -47,13 +50,14 @@ export default {
     Sidebar, // Brand
     brandimage,
     yesno,
-    soical,
+    social,
     corporate
   },
   data() {
     return {
       config: config,
-      position: config.notificationPosition
+      position: config.notificationPosition,
+      fathermessage: ""
     };
   },
 
@@ -63,6 +67,12 @@ export default {
       // return this.config.clientName + " is welcoming you!";
       // ES6 syntax
       return `${this.config.clientName} is welcoming you`;
+    }
+  },
+  methods: {
+    setMessage(msg) {
+      this.fathermessage = msg;
+      console.log("father:" + this.fathermessage);
     }
   }
 };

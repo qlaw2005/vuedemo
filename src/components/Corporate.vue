@@ -1,20 +1,29 @@
 <template>
   <div id="main">
-    <input v-model="message" placeholder="edit me" />
-    <p>Message is: {{ message }}</p>
+    <input :value="message" placeholder="edit me" @input="sendmessage" />
+    <p>Message from social is: {{ message }}</p>
   </div>
 </template>
 
 <script>
+import inputMixin from "../mixins/inputMixin.js";
 export default {
-  props: {},
+  mixins: [inputMixin],
+  props: {
+    // message: String
+  },
   data() {
     return {
-      message: ""
+      // message: message
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    // sendmessage(event) {
+    //   console.log("Corportate msg:" + event.target.value);
+    //   this.$emit("sendcormessage", event.target.value);
+    // }
+  },
   mounted() {},
   created() {}
 };
